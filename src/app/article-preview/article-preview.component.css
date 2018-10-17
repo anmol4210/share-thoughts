@@ -1,15 +1,27 @@
-.text-shadow{
-    text-shadow: 1ch;
-}
 
-.favorite-btn {
+.username {
+    font-size: 0.9rem;
+    color: rgb(78, 200, 88);
+  }
+  
+  .timestamp {
+    font-size: 0.75rem;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+    color: #000000;
+  }
+  
+  .favorite-btn {
     background: none;
     border: rgb(78, 200, 94) solid 1px;
     color: rgb(78, 200, 104);
     font-size: 1.1rem;
-    
   }
+  
   .favorite-btn:hover {
     background-color: rgb(78, 200, 104);
     color: #ffffff;
   }
+  

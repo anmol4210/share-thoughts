@@ -1,0 +1,33 @@
+.banner {
+    background-color: #f3f3f3;
+  }
+  
+  .icon-btn-dark {
+    background: none;
+    border: rgb(82, 199, 59) solid 1px;
+    color:  rgb(82, 199, 59);
+    font-size: 0.8rem;
+  }
+  
+  .icon-btn-dark:hover {
+    background-color:  rgb(82, 199, 59);
+    color: #ffffff;
+  }
+  
+  i{
+    font-size: 1rem;
+  }
+  .tab {
+    background: none;
+    border: none;
+    outline: none;
+    color: #aaa;
+  }
+  
+  .tab:hover {
+    color: #000;
+  } 
+  .active {
+    color: #5eb962;
+  }
+  

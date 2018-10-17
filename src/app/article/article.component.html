@@ -1,0 +1,77 @@
+<div class="">
+  <div>
+  <div>
+  <h1>{{article.title}}</h1>
+</div>
+
+<div class="d-flex article-head">
+    <img src="{{article.author.image}}" alt="" height=35 width=35 class="rounded-circle mx-2">
+    <a  routerLink="article-writer">
+    <div class="d-flex flex-column align-items-start">
+        <span  class="username">{{article.author.username}}</span>
+        
+      <span class="timestamp text-secondary">{{date}}</span>
+      
+    </div>
+</a>
+
+<button (click)=follow() class="favorite-btn rounded">
+    <i class="material-icons mr-1">
+        add
+    </i>
+    <span class="">Follow {{article.author.username}}</span>
+  </button>
+
+<button (click)=articlePreference(article.slug) class="favorite-btn rounded">
+    <i class="material-icons mr-1">
+        favorite
+    </i>
+    <span class="">{{preference}} Article({{article.favoritesCount}})</span>
+  </button>
+</div>
+</div>
+
+<div>
+  <p>{{article.description}}</p>
+  <div class="badge badge-dark" *ngFor="let tags of article.tagList">
+      <span> {{tags}}</span>
+   
+  
+</div>
+
+</div>
+<hr>
+
+<div class="d-flex justify-content-center">
+    <img src="{{article.author.image}}" alt="" height=35 width=35 class="rounded-circle mx-2">
+    <a  routerLink="article-writer">
+    <div class="d-flex flex-column align-items-start">
+        <span  class="username">{{article.author.username}}</span>
+        
+      <span class="timestamp text-secondary">{{date}}</span>
+      
+    </div>
+</a>
+
+<button (click)=follow() class="favorite-btn rounded">
+    <i class="material-icons mr-1">
+        add
+    </i>
+    <span class="">Follow {{article.author.username}}</span>
+  </button>
+
+<button (click)=articlePreference(article.slug) class="favorite-btn rounded">
+    <i class="material-icons mr-1">
+        favorite
+    </i>
+    <span class="">{{preference}} Article({{article.favoritesCount}})</span>
+  </button>
+</div>
+
+
+<div class="justify-content-center">
+      <textarea placeholder="Write a comment"></textarea><br>
+      <a href="#!" class="btn btn-primary">Post Comment</a>
+    
+  </div>
+</div>

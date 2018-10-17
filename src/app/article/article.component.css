@@ -1,15 +1,20 @@
-.text-shadow{
-    text-shadow: 1ch;
-}
-
 .favorite-btn {
     background: none;
     border: rgb(78, 200, 94) solid 1px;
     color: rgb(78, 200, 104);
-    font-size: 1.1rem;
-    
+    font-size: 1.5rem;
+    margin: 10px;
   }
+  
   .favorite-btn:hover {
     background-color: rgb(78, 200, 104);
     color: #ffffff;
+  }
+  i{
+      padding-top: 15px; 
+  }
+  .article-head{
+      background-color: rgb(36, 33, 33);
+      color: #ffffff;
+      padding: 10px;
   }

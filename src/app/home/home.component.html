@@ -1,0 +1,34 @@
+
+<div class="banner text-center py-3 bg-success text-white">
+    <div class="container">
+     <h1 class="text-shadow">Share</h1>
+     <p class="para-shadow">A place to share your knowledge</p>
+   </div>
+   </div>
+   
+   <div>
+     <nav class="nav">
+      <a class="nav-link active" routerLink="">Your Feed</a>
+      <a class="nav-link active" routerLink="">Global Feed</a>
+     </nav>
+   </div>
+   
+   <div class="container">
+  <div class="row">
+    <div class="col-md-9">
+    <div *ngFor="let article of articles">
+   <app-article-preview [task]="article"></app-article-preview>
+   </div>
+  </div>
+<div class=" col-md-3">
+  <div class="sidebar">
+    <p>Popular Tags</p>
+   <div  class="badge badge-dark" *ngFor="let tag of tags">
+       <span class="mx-3 my-3">
+            {{tag}}
+         </span>
+   </div>
+</div>
+  </div>
+  </div>
+  </div>

@@ -1,0 +1,32 @@
+.favorite-btn {
+    background: none;
+    border: rgb(78, 200, 94) solid 1px;
+    color: rgb(78, 200, 104);
+    font-size: 1.1rem;
+    
+  }
+  .favorite-btn:hover {
+    background-color: rgb(78, 200, 104);
+    color: #ffffff;
+  }
+  .text-shadow{
+    text-shadow: 0px 1px 3px rgba(0, 0, 0, 3);
+    font-weight: 700!important;
+    text-align: center;
+    font-size: 3.5em;
+    padding-bottom: 0.5rem;
+  }
+
+  .para-shadow{
+    color: #ffffff;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 300 !important;
+    margin-bottom: 0px;
+  }
+
+  .sidebar{
+    padding: 5px 10px 10px;
+    background: #f3f3f3;
+    border-radius: 4px;
+  }

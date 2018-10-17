@@ -1,0 +1,8 @@
+<form class="form-group col-sm-6" (ngSubmit)="submitArticle()" [formGroup]="article">
+  <input type="text" formControlName="title"  class="form-control my-3 p-4" placeholder="Article Title" required autocomplete="off">
+  <input type="text" formControlName="description"  class="form-control my-3 p-4" placeholder="What's this article about?" required autocomplete="off">
+  <input type="text" formControlName="body" class="form-control my-3 p-4" placeholder="Write your article (in markdown)" required>
+  <div class="d-flex justify-content-end">
+    <input type="submit" value="Publish Article" class="btn btn-dark">
+  </div>
+</form>
