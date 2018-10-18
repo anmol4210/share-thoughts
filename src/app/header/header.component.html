@@ -21,6 +21,9 @@
       <li *ngIf="!display" class="nav-item">
         <a class="nav-link" routerLink="settings">Settings</a>
       </li>
+      <li *ngIf="!display" class="nav-item">
+        <a class="nav-link" routerLink="article-writer/{{user}}">{{user}}</a>
+      </li>
     </ul>
 
     

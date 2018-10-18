@@ -1,3 +1,23 @@
-<p>
-  settings works!
-</p>
+<div class="text-sm-center">
+  <h1>Your Settings</h1>
+  <div class="row">
+      <div class="col-sm-3">
+  
+      </div>
+      <form class="form-group col-sm-6" (ngSubmit)="updateUser()" [formGroup]="updateduser">
+          <input type="text" formControlName="url" value=""   class="form-control my-3 p-4" placeholder="URL of profile picture"  autocomplete="off">
+          <input type="text" formControlName="username"  class="form-control my-3 p-4" placeholder="Username" autocomplete="off">
+          <textarea type="text" formControlName="bio"  class="form-control my-3 p-4" placeholder="Short bio about you" ></textarea>
+          <input type="text" formControlName="email"   class="form-control my-3 p-4" placeholder="Email" >
+          <input type="password" formControlName="password"  class="form-control my-3 p-4" placeholder="New Password" >
+        <div class="d-flex justify-content-end">
+            <input type="submit" value="Update Settings" class="btn btn-dark">
+          </div>
+        </form>
+      
+        <div class="col-sm-3"></div>
+        
+      </div>
+      <hr>
+      <button type="button" (click)="logout()" class="btn btn-outline-success">Logout</button>
+    </div>

@@ -17,13 +17,20 @@ export class NewArticleComponent implements OnInit {
   ngOnInit() {
   }
   submitArticle(){
+    console.log("submit called")
     this.getData.submitArticle({
-      "article": {
-        "title": this.article.value.title,
-        "description": this.article.value.description,
-        "body": this.article.value.body,
-        "tagList": ["reactjs", "angularjs", "dragons"]
+      article: {
+        title: this.article.value.title,
+        description: this.article.value.description,
+        body: this.article.value.body,
+        tagList: ["reactjs", "angularjs", "dragons"]
       }
+    }).subscribe((data:any)=>{
+      console.log(data);
+    }
+    ,
+    err=>{
+      console.log(err);
     });
   }
 

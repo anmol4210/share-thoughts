@@ -1,21 +1,32 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 import * as Rx from "rxjs";
 
 const subject = new Rx.ReplaySubject(2, 100);
 
+const name= new Rx.ReplaySubject(2, 100);
+
 @Injectable({
   providedIn: 'root'
 })
 export class ServicesService {
+
 url:string;
 headerDict:any;
-  constructor(private http:HttpClient) { 
+  
+tokenVal=window.localStorage.getItem('token');
+ headers=new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization':'Token '+this.tokenVal
+});
+  options={headers:this.headers};
+constructor(private http:HttpClient) { 
     this.url='https://conduit.productionready.io/api/';
   }
 
   updateSubject(){
+    
     subject.next(window.localStorage.getItem('token'));
   }
   getsubject(){
@@ -31,6 +42,20 @@ headerDict:any;
     return this.http.post(`${this.url}users/`,user);
   }
 
+  getCurrentUser(){
+   
+      console.log("getting current user");
+      return this.http.get(`${this.url}user`,this.options)
+  }
+
+  updateUser(user){
+    if(user.user.password==''){
+      
+      delete user.user.password;
+    }
+    return this.http.put(`${this.url}user`,user,this.options);
+  }
+
   getProfile(username){
     return this.http.get(`${this.url}/profiles/${username}`);
   }
@@ -44,14 +69,23 @@ headerDict:any;
   }
 
   submitArticle(article){
-     this.headerDict= {
-      'Content-Type': 'application/json',
-      'token':window.localStorage.getItem('token')
-    }
+   
+//     let tokenVal=window.localStorage.getItem('token').trim();
+//     let headers=new HttpHeaders({
+//   'Content-Type': 'application/json',
+//        'Authorization':'Token '+tokenVal
+// });
+// let options={headers:headers}
     
-    return this.http.post(`${this.url}articles`,article,this.headerDict);
-  }
+    return this.http.post(`${this.url}articles`,article,this.options);
 
+  }
+writeComment(slug,comment){
+  return this.http.post(`${this.url}articles/${slug}/comments`,comment,this.options);
+}
+getComments(slug){
+  return this.http.get(`${this.url}articles/${slug}/comments`,this.options);
+}
   getTags(){
     return this.http.get(`${this.url}tags`);
   }

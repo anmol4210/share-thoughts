@@ -44,7 +44,7 @@
 
 <div class="d-flex justify-content-center">
     <img src="{{article.author.image}}" alt="" height=35 width=35 class="rounded-circle mx-2">
-    <a  routerLink="article-writer">
+    <a  routerLink="../../article-writer/{{article.author.username}}">
     <div class="d-flex flex-column align-items-start">
         <span  class="username">{{article.author.username}}</span>
         
@@ -53,6 +53,24 @@
     </div>
 </a>
 
+
+<div>
+    <button (click)=follow() class="favorite-btn rounded">
+        <i class="material-icons mr-1">
+            edit
+        </i>
+        <span class="">Edit</span>
+      </button>
+    
+    <button (click)=articlePreference(article.slug) class="favorite-btn rounded">
+        <i class="material-icons mr-1">
+            favorite
+        </i>
+        <span class="">Delete</span>
+      </button>
+    </div>
+
+<div>
 <button (click)=follow() class="favorite-btn rounded">
     <i class="material-icons mr-1">
         add
@@ -67,11 +85,25 @@
     <span class="">{{preference}} Article({{article.favoritesCount}})</span>
   </button>
 </div>
+</div>
 
+<div class="row">
+    <div class="col-sm-3"></div>
+<div class="rounded comment-box col-sm-6">
+        <form class="d-flex flex-column" [formGroup]="userInputs" (ngSubmit)="onSubmit()">
+          <textarea formControlName="comment" rows="4" cols="80" placeholder="Write a comment..." class="form-control p-3"></textarea>
+          <div class="d-flex justify-content-between comment-footer p-2">
+            <div class="">
+              <img src="" class="rounded-circle" height=35 width=35>
+            </div>
+            <input type="submit" value="Post Comment" class="post-btn btn btn-primary">
+          </div>
+        </form>
+      </div>
+      <div class="col-sm-3"></div>
+    </div>
+<div *ngFor="let comment of comments">
+    <app-comment [review]="comment"></app-comment>
+</div>
 
-<div class="justify-content-center">
-      <textarea placeholder="Write a comment"></textarea><br>
-      <a href="#!" class="btn btn-primary">Post Comment</a>
-    
-  </div>
 </div>

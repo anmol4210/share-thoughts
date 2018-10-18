@@ -13,9 +13,12 @@ import { ArticleComponent } from './article/article.component';
 import { ArticleWriterComponent } from './article-writer/article-writer.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import {AuthguargGuard} from './authguarg.guard'
+
 import {FormsModule} from '@angular/forms';
 import { NewArticleComponent } from './new-article/new-article.component';
 import { SettingsComponent } from './settings/settings.component';
+import { CommentComponent } from './comment/comment.component';
 
 //import { from } from 'rxjs';
 const routes: Routes = [
@@ -56,6 +59,7 @@ const routes: Routes = [
     
     {
           path: 'settings',
+          canActivate:[AuthguargGuard],
           component: SettingsComponent
         }
   
@@ -72,7 +76,8 @@ const routes: Routes = [
     ArticleComponent,
     ArticleWriterComponent,
     NewArticleComponent,
-    SettingsComponent
+    SettingsComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,
