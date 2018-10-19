@@ -1,109 +1,154 @@
 <div class="">
-  <div>
-  <div>
-  <h1>{{article.title}}</h1>
-</div>
+    <div>
+        <div>
+            <h1>{{article.title}}</h1>
+        </div>
 
-<div class="d-flex article-head">
-    <img src="{{article.author.image}}" alt="" height=35 width=35 class="rounded-circle mx-2">
-    <a  routerLink="article-writer">
-    <div class="d-flex flex-column align-items-start">
-        <span  class="username">{{article.author.username}}</span>
-        
-      <span class="timestamp text-secondary">{{date}}</span>
-      
-    </div>
-</a>
+        <div class="d-flex article-head">
+            <img src="{{article.author.image}}" alt="" height=35 width=35 class="rounded-circle mx-2">
+            <a routerLink="/article-writer/{{article.author.username}}">
+                <div class="d-flex flex-column align-items-start">
+                    <span class="username">{{article.author.username}}</span>
 
-<button (click)=follow() class="favorite-btn rounded">
-    <i class="material-icons mr-1">
-        add
-    </i>
-    <span class="">Follow {{article.author.username}}</span>
-  </button>
+                    <span class="timestamp text-secondary">{{date}}</span>
 
-<button (click)=articlePreference(article.slug) class="favorite-btn rounded">
-    <i class="material-icons mr-1">
-        favorite
-    </i>
-    <span class="">{{preference}} Article({{article.favoritesCount}})</span>
-  </button>
-</div>
-</div>
+                </div>
+            </a>
 
-<div>
-  <p>{{article.description}}</p>
-  <div class="badge badge-dark" *ngFor="let tags of article.tagList">
-      <span> {{tags}}</span>
-   
-  
-</div>
+            <div *ngIf="currentUser">
+                <button (click)=edit(article.slug) class="favorite-btn rounded">
+                    <i class="material-icons mr-1">
+                        edit
+                    </i>
+                    <span class="">Edit</span>
+                </button>
 
-</div>
-<hr>
-
-<div class="d-flex justify-content-center">
-    <img src="{{article.author.image}}" alt="" height=35 width=35 class="rounded-circle mx-2">
-    <a  routerLink="../../article-writer/{{article.author.username}}">
-    <div class="d-flex flex-column align-items-start">
-        <span  class="username">{{article.author.username}}</span>
-        
-      <span class="timestamp text-secondary">{{date}}</span>
-      
-    </div>
-</a>
-
-
-<div>
-    <button (click)=follow() class="favorite-btn rounded">
-        <i class="material-icons mr-1">
-            edit
-        </i>
-        <span class="">Edit</span>
-      </button>
-    
-    <button (click)=articlePreference(article.slug) class="favorite-btn rounded">
-        <i class="material-icons mr-1">
-            favorite
-        </i>
-        <span class="">Delete</span>
-      </button>
-    </div>
-
-<div>
-<button (click)=follow() class="favorite-btn rounded">
-    <i class="material-icons mr-1">
-        add
-    </i>
-    <span class="">Follow {{article.author.username}}</span>
-  </button>
-
-<button (click)=articlePreference(article.slug) class="favorite-btn rounded">
-    <i class="material-icons mr-1">
-        favorite
-    </i>
-    <span class="">{{preference}} Article({{article.favoritesCount}})</span>
-  </button>
-</div>
-</div>
-
-<div class="row">
-    <div class="col-sm-3"></div>
-<div class="rounded comment-box col-sm-6">
-        <form class="d-flex flex-column" [formGroup]="userInputs" (ngSubmit)="onSubmit()">
-          <textarea formControlName="comment" rows="4" cols="80" placeholder="Write a comment..." class="form-control p-3"></textarea>
-          <div class="d-flex justify-content-between comment-footer p-2">
-            <div class="">
-              <img src="" class="rounded-circle" height=35 width=35>
+                <button (click)=delete(article.slug) class="favorite-btn rounded">
+                    <i class="material-icons mr-1">
+                        delete
+                    </i>
+                    <span class="">Delete</span>
+                </button>
             </div>
-            <input type="submit" value="Post Comment" class="post-btn btn btn-primary">
-          </div>
-        </form>
-      </div>
-      <div class="col-sm-3"></div>
+
+            <div *ngIf="!currentUser">
+                <button *ngIf="!followuser" (click)=followUser(article.author.username) class="favorite-btn rounded">
+                    <i class="material-icons mr-1">
+                        add
+                    </i>
+                    <span class="">Follow {{article.author.username}}</span>
+                </button>
+
+                <button *ngIf="followuser" (click)=unfollowUser(article.author.username) class="favorite-btn rounded">
+                        <i class="material-icons mr-1">
+                            add
+                        </i>
+                        <span class="">UnFollow {{article.author.username}}</span>
+                    </button>
+
+                <button *ngIf="!articlefavorite" (click)=favorite(article.slug) class="favorite-btn rounded">
+                    <i class="material-icons mr-1">
+                        favorite
+                    </i>
+                    <span class="">FavoriteArticle({{article.favoritesCount}})</span>
+                </button>
+                <button *ngIf="articlefavorite" (click)=unfavorite(article.slug) class="favorite-btn rounded">
+                        <i class="material-icons mr-1">
+                            favorite
+                        </i>
+                        <span class="">UnFavoriteArticle({{article.favoritesCount}})</span>
+                    </button>
+            </div>
+
+        </div>
     </div>
-<div *ngFor="let comment of comments">
-    <app-comment [review]="comment"></app-comment>
-</div>
+
+    <div>
+        <p>{{article.description}}</p>
+        <div class="badge badge-dark" *ngFor="let tags of article.tagList">
+            <span> {{tags}}</span>
+
+
+        </div>
+
+    </div>
+    <hr>
+
+    <div class="d-flex justify-content-center">
+        <img src="{{article.author.image}}" alt="" height=35 width=35 class="rounded-circle mx-2">
+        <a routerLink="/article-writer/{{article.author.username}}">
+            <div class="d-flex flex-column align-items-start">
+                <span class="username">{{article.author.username}}</span>
+
+                <span class="timestamp text-secondary">{{date}}</span>
+
+            </div>
+        </a>
+
+
+        <div *ngIf="currentUser">
+            <button (click)=edit(article.slug) class="favorite-btn rounded">
+                <i class="material-icons mr-1">
+                    edit
+                </i>
+                <span class="">Edit</span>
+            </button>
+
+            <button (click)=delete(article.slug) class="favorite-btn rounded">
+                <i class="material-icons mr-1">
+                    delete
+                </i>
+                <span class="">Delete</span>
+            </button>
+        </div>
+
+        <div *ngIf="!currentUser">
+            <button *ngIf="!followuser" (click)=followUser(article.author.username) class="favorite-btn rounded">
+                <i class="material-icons mr-1">
+                    add
+                </i>
+                <span class="">Follow {{article.author.username}}</span>
+            </button>
+            <button *ngIf="followuser" (click)=unfollowUser(article.author.username) class="favorite-btn rounded">
+                    <i class="material-icons mr-1">
+                        add
+                    </i>
+                    <span class="">UnFollow {{article.author.username}}</span>
+                </button>
+
+            <button  *ngIf="!articlefavorite" (click)=favorite(article.slug) class="favorite-btn rounded">
+                <i class="material-icons mr-1">
+                    favorite
+                </i>
+                <span class=""> FavoriteArticle({{article.favoritesCount}})</span>
+            </button>
+
+            <button  *ngIf="articlefavorite" (click)=unfavorite(article.slug) class="favorite-btn rounded">
+                    <i class="material-icons mr-1">
+                        favorite
+                    </i>
+                    <span class="">UnFavorite Article({{article.favoritesCount}})</span>
+                </button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="rounded comment-box col-sm-6">
+            <form class="d-flex flex-column" [formGroup]="userInputs" (ngSubmit)="onSubmit()">
+                <textarea formControlName="comment" rows="4" cols="80" placeholder="Write a comment..." class="form-control p-3"></textarea>
+                <div class="d-flex justify-content-between comment-footer p-2">
+                    <div class="">
+                        <img src="" class="rounded-circle" height=35 width=35>
+                    </div>
+                    <input type="submit" value="Post Comment" class="post-btn btn btn-primary">
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+    <div *ngFor="let comment of comments">
+        <app-comment [review]="comment"></app-comment>
+    </div>
 
 </div>

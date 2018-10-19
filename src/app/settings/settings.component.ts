@@ -25,7 +25,8 @@ export class SettingsComponent implements OnInit {
     
 
     this.getData.getCurrentUser().subscribe((data:any)=>{
-     
+     console.log("current user");
+        console.log(data);
       this.userDetails=data.user
       this.updateduser.controls['username'].setValue(this.userDetails.username);
       this.updateduser.controls['email'].setValue(this.userDetails.email);

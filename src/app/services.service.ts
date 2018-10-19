@@ -45,6 +45,7 @@ constructor(private http:HttpClient) {
   getCurrentUser(){
    
       console.log("getting current user");
+      
       return this.http.get(`${this.url}user`,this.options)
   }
 
@@ -57,7 +58,13 @@ constructor(private http:HttpClient) {
   }
 
   getProfile(username){
+    if(window.localStorage.getItem('token')){
+      return this.http.get(`${this.url}/profiles/${username}`,this.options);
+ 
+    }
+    else{
     return this.http.get(`${this.url}/profiles/${username}`);
+    }
   }
   
   getArticles(){
@@ -65,24 +72,40 @@ constructor(private http:HttpClient) {
   }
 
   getArticle(slug){
-    return this.http.get(`${this.url}articles/${slug}`);
+    if(window.localStorage.getItem('token')){
+      console.log("with header called");
+    return this.http.get(`${this.url}articles/${slug}`,this.options);
   }
+    else{
+      console.log("without header called")
+      return this.http.get(`${this.url}articles/${slug}`);
+    }
+  }
+
+  getUserFavoriteArticle(username){
+    return this.http.get(`${this.url}articles/?favorited=${username}`);
+    
+  }
+
 
   submitArticle(article){
    
-//     let tokenVal=window.localStorage.getItem('token').trim();
-//     let headers=new HttpHeaders({
-//   'Content-Type': 'application/json',
-//        'Authorization':'Token '+tokenVal
-// });
-// let options={headers:headers}
-    
     return this.http.post(`${this.url}articles`,article,this.options);
 
   }
-writeComment(slug,comment){
+
+  updateArticle(article,slug){
+    return this.http.put(`${this.url}articles/${slug}`,article,this.options);
+
+  }
+  deleteArticle(slug){
+    return this.http.delete(`${this.url}article/${slug}`,this.options);
+  }
+
+  writeComment(slug,comment){
   return this.http.post(`${this.url}articles/${slug}/comments`,comment,this.options);
 }
+
 getComments(slug){
   return this.http.get(`${this.url}articles/${slug}/comments`,this.options);
 }
@@ -97,18 +120,22 @@ getComments(slug){
   
   }
 
-  favouriteArticle(id){
-    const headerDict = {
-      'Content-Type': 'application/json',
-      'token':window.localStorage.getItem('token')
-    }
+  favouriteArticle(slug){
     
-    const requestOptions = {                                                                                                                                                                                 
-      headers: new Headers(headerDict), 
-    };
-   // console.log("favourite article: "+id);
-    return this.http.post(`${this.url}articles/${id}/favorite`,"",);
+    return this.http.post(`${this.url}articles/${slug}/favorite`,{},this.options);
   }
 
+  unfavouriteArticle(slug){
+    
+    return this.http.delete(`${this.url}articles/${slug}/favorite`,this.options);
+  }
+
+  followUser(username){
+    return this.http.post(`${this.url}profiles/${username}/follow`,{},this.options);
+  }
+
+  unfollowUser(username){
+    return this.http.delete(`${this.url}profiles/${username}/follow`,this.options);
+  }
   
 }

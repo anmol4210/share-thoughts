@@ -56,6 +56,10 @@ const routes: Routes = [
       path: 'new-article',
       component: NewArticleComponent
   },
+    {
+    path: 'new-article/:slug',
+    component: NewArticleComponent
+    },
     
     {
           path: 'settings',

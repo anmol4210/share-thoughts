@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand text-success " routerLink="">Share</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -16,16 +17,30 @@
         <a class="nav-link" routerLink="signup">SignUp</a>
       </li>
       <li *ngIf="!display" class="nav-item">
-        <a class="nav-link" routerLink="new-article">New Article</a>
+        <a class="nav-link" routerLink="new-article">
+          <span class="icon-btn">
+            <i class="material-icons mr-1">
+              create
+            </i>
+          </span>
+          New Article
+        </a>
       </li>
       <li *ngIf="!display" class="nav-item">
-        <a class="nav-link" routerLink="settings">Settings</a>
+        <a class="nav-link" routerLink="settings">
+          <span class="icon-btn">
+            <i class="material-icons mr-1">
+              settings
+            </i>
+          </span>
+          Settings
+        </a>
       </li>
       <li *ngIf="!display" class="nav-item">
         <a class="nav-link" routerLink="article-writer/{{user}}">{{user}}</a>
       </li>
     </ul>
 
-    
+
   </div>
 </nav>
