@@ -8,8 +8,8 @@
    
    <div>
      <nav class="nav">
-      <a class="nav-link active" routerLink="">Your Feed</a>
-      <a class="nav-link active" routerLink="">Global Feed</a>
+      <button *ngIf="loggedin" class="" (click)=yourfeed() >Your Feed</button>
+      <button class="" (click)=globalfeed() >Global Feed</button>
      </nav>
    </div>
    
@@ -23,7 +23,7 @@
 <div class=" col-md-3">
   <div class="sidebar">
     <p>Popular Tags</p>
-   <div  class="badge badge-dark" *ngFor="let tag of tags">
+   <div (click) =filtertag(tag)  class="badge badge-dark" *ngFor="let tag of tags">
        <span class="mx-3 my-3">
             {{tag}}
          </span>

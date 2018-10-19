@@ -21,8 +21,20 @@ tokenVal=window.localStorage.getItem('token');
     'Authorization':'Token '+this.tokenVal
 });
   options={headers:this.headers};
+
 constructor(private http:HttpClient) { 
     this.url='https://conduit.productionready.io/api/';
+  }
+
+  updateHeader(){
+    
+this.tokenVal=window.localStorage.getItem('token');
+this.headers=new HttpHeaders({
+   'Content-Type': 'application/json',
+   'Authorization':'Token '+this.tokenVal
+});
+ this.options={headers:this.headers};
+
   }
 
   updateSubject(){
@@ -45,8 +57,8 @@ constructor(private http:HttpClient) {
   getCurrentUser(){
    
       console.log("getting current user");
-      
       return this.http.get(`${this.url}user`,this.options)
+    
   }
 
   updateUser(user){
@@ -66,7 +78,9 @@ constructor(private http:HttpClient) {
     return this.http.get(`${this.url}/profiles/${username}`);
     }
   }
-  
+  getfeedArticles(){
+    return this.http.get(`${this.url}articles/feed`,this.options);
+  }
   getArticles(){
     return this.http.get(`${this.url}articles`);
   }
@@ -118,6 +132,11 @@ getComments(slug){
   getuserFavouriteArticles(username){
     return this.http.get(`${this.url}articles?favorited=${username}`);
   
+  }
+
+
+  gettagArticles(tag){
+    return this.http.get(`${this.url}articles/?tag=${tag}`);
   }
 
   favouriteArticle(slug){

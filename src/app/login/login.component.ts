@@ -29,7 +29,8 @@ export class LoginComponent implements OnInit {
       }
     }).subscribe((data:any)=>{
     this.tokenData.saveToken(data.user.token);
-    this.getData.updateSubject();
+      this.getData.updateHeader();
+     this.getData.updateSubject();
     //this.getData.updateSubjectName();
     this.route.navigate(['']);
     
