@@ -53,5 +53,9 @@ constructor(private getData:ServicesService, private tokenService:TokenserviceSe
 
 
 }
+
+catchid(e){
+  console.log("emitted id:"+e)
+}
   
 }

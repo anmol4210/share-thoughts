@@ -11,9 +11,11 @@ export class HomeComponent implements OnInit {
   articles:any;
   tags:any;
   loggedin:boolean;
+  range = Array(50).fill(4)
+  condition:boolean;
   constructor(private getData:ServicesService, private token:TokenserviceService){}
   ngOnInit(){
-
+this.condition=true;
     // this.getData.getCurrentUser
     // this.getData.getArticles()
     // .subscribe((data:any)=>{

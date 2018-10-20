@@ -18,6 +18,7 @@ export class ArticleComponent implements OnInit {
   currentUser: boolean;
   loginUserName: string;
   followuser: boolean;
+  loggedIn:boolean;
   userInputs = new FormGroup({
     comment: new FormControl("")
   });
@@ -30,16 +31,20 @@ export class ArticleComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    //console.log("ng on init called");
     this.getData.getArticle(this.slug).subscribe((data: any) => {
       this.article = data.article;
       this.date = new Date(this.article.createdAt).toDateString();
       //console.log("following")
       this.followuser = this.article.author.following;
       this.getData.getCurrentUser().subscribe((data: any) => {
+        //console.log("loggedIn getting current user")
+        this.loggedIn=true;
         this.loginUserName = data.user.username;
         //console.log("check name:"+this.article.author.username+" "+data.user.username)
         if (this.article.author.username == data.user.username) {
-          console.log("true called")
+          //console.log("true called")
           this.currentUser = true;
         }
 
@@ -52,6 +57,10 @@ export class ArticleComponent implements OnInit {
             //console.log(article.title); // 1, "string", false
           }
         })
+      },
+      err=>{
+       this.loggedIn=false;
+        // console.log(err);
       });
     });
 
@@ -153,6 +162,9 @@ export class ArticleComponent implements OnInit {
   }
 
 
+  catchid(e){
+    console.log("emitted id:"+e)
+  }
 
   onSubmit() {
     this.getData

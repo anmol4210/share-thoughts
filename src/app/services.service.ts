@@ -123,6 +123,12 @@ this.headers=new HttpHeaders({
 getComments(slug){
   return this.http.get(`${this.url}articles/${slug}/comments`,this.options);
 }
+deletecomment(slug,id){
+  ///api/articles/:slug/comments/:id
+
+  return this.http.delete(`${this.url}article/${slug}/comments/${id}`,this.options);
+  
+}
   getTags(){
     return this.http.get(`${this.url}tags`);
   }

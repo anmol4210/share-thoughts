@@ -1,10 +1,10 @@
-<div class="">
-    <div>
-        <div>
+<div class="article-page">
+    <div class="banner">
+        
+        <div class="container">
             <h1>{{article.title}}</h1>
-        </div>
-
-        <div class="d-flex article-head">
+        
+        <div class="d-flex">
             <img src="{{article.author.image}}" alt="" height=35 width=35 class="rounded-circle mx-2">
             <a routerLink="/article-writer/{{article.author.username}}">
                 <div class="d-flex flex-column align-items-start">
@@ -61,21 +61,31 @@
             </div>
 
         </div>
+        </div>
     </div>
 
-    <div>
+    <div class="container page">
+        <div class="row article-content"> 
+            <div class="col-xs-12">
+                <div>
         <p>{{article.description}}</p>
-        <div class="badge badge-dark" *ngFor="let tags of article.tagList">
-            <span> {{tags}}</span>
+    </div>
+    <ul class="tag-list">       
+         <li class="tag-default tag-pill tag-outline " *ngFor="let tags of article.tagList">
+             {{tags}}
 
+        </li>
+    </ul>
 
         </div>
-
     </div>
-    <hr>
+    
+    <hr/>
 
-    <div class="d-flex justify-content-center">
+    <div class="article-actions">
+<div class="article-meta">
         <img src="{{article.author.image}}" alt="" height=35 width=35 class="rounded-circle mx-2">
+        <div class="info">
         <a routerLink="/article-writer/{{article.author.username}}">
             <div class="d-flex flex-column align-items-start">
                 <span class="username">{{article.author.username}}</span>
@@ -84,71 +94,80 @@
 
             </div>
         </a>
+    </div>
 
-
-        <div *ngIf="currentUser">
-            <button (click)=edit(article.slug) class="favorite-btn rounded">
+        <span *ngIf="currentUser">
+            <button class="btn btn-sm btn-outline-secondary" (click)=edit(article.slug) class="favorite-btn rounded">
                 <i class="material-icons mr-1">
                     edit
                 </i>
                 <span class="">Edit</span>
             </button>
 
-            <button (click)=delete(article.slug) class="favorite-btn rounded">
+            <button class="btn btn-sm btn-outline-danger" (click)=delete(article.slug) class="favorite-btn rounded">
                 <i class="material-icons mr-1">
                     delete
                 </i>
                 <span class="">Delete</span>
             </button>
-        </div>
+        </span>
 
-        <div *ngIf="!currentUser">
-            <button *ngIf="!followuser" (click)=followUser(article.author.username) class="favorite-btn rounded">
+        <span *ngIf="!currentUser">
+            <button class="btn" *ngIf="!followuser" (click)=followUser(article.author.username) class="favorite-btn rounded">
                 <i class="material-icons mr-1">
                     add
                 </i>
                 <span class="">Follow {{article.author.username}}</span>
             </button>
-            <button *ngIf="followuser" (click)=unfollowUser(article.author.username) class="favorite-btn rounded">
+            <button class="btn" *ngIf="followuser" (click)=unfollowUser(article.author.username) class="favorite-btn rounded">
                 <i class="material-icons mr-1">
                     add
                 </i>
                 <span class="">UnFollow {{article.author.username}}</span>
             </button>
 
-            <button *ngIf="!articlefavorite" (click)=favorite(article.slug) class="favorite-btn rounded">
+            <button class="btn btn-sm btn-outline-primary" *ngIf="!articlefavorite" (click)=favorite(article.slug) class="favorite-btn rounded">
                 <i class="material-icons mr-1">
                     favorite
                 </i>
                 <span class=""> FavoriteArticle({{article.favoritesCount}})</span>
             </button>
 
-            <button *ngIf="articlefavorite" (click)=unfavorite(article.slug) class="favorite-btn rounded">
+            <button class="btn" *ngIf="articlefavorite" (click)=unfavorite(article.slug) class="favorite-btn rounded">
                 <i class="material-icons mr-1">
                     favorite
                 </i>
                 <span class="">UnFavorite Article({{article.favoritesCount}})</span>
             </button>
+        </span>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-sm-3"></div>
-        <div class="rounded comment-box col-sm-6">
-            <form class="d-flex flex-column" [formGroup]="userInputs" (ngSubmit)="onSubmit()">
+        <div class="col-xs-12 col-md-8 offset-md-2">
+            <div *ngIf="loggedIn" style="display:inherit;">
+              
+            <form class="card" [formGroup]="userInputs" (ngSubmit)="onSubmit()">
+               <div class="card-block">
                 <textarea formControlName="comment" rows="4" cols="80" placeholder="Write a comment..." class="form-control p-3"></textarea>
-                <div class="d-flex justify-content-between comment-footer p-2">
-                    <div class="">
-                        <img src="" class="rounded-circle" height=35 width=35>
-                    </div>
-                    <input type="submit" value="Post Comment" class="post-btn btn btn-primary">
+            </div>
+                <div class="card-footer">
+                        <img src="" class="comment-autor-img" height=35 width=35>
+                    
+                    <button type="submit" style="float:right;" class="btn btn-sm btn-secondary">Post Comment</button>
                 </div>
             </form>
         </div>
-        <div class="col-sm-3"></div>
-    </div>
+        <p *ngIf="!loggedIn" >
+        <a href="/login">Login</a> or
+        <a href="/signup">Register</a>
+        to add comments to this article
+        </p>
+    
     <div *ngFor="let comment of comments">
-        <app-comment [review]="comment"></app-comment>
+        <app-comment [review]="comment" (commentid)='catchid($event)'></app-comment>
     </div>
-
+</div>
+</div>
+</div>
 </div>
