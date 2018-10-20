@@ -29,6 +29,9 @@ export class NewArticleComponent implements OnInit {
         this.article.controls['title'].setValue(data.article.title);
         this.article.controls['description'].setValue(data.article.description);
         this.article.controls['body'].setValue(data.article.body);
+        this.tags=data.article.tagList;
+        //this.article.controls['taglist'].setValue(data.article.tagList);
+
 
       });
     }
@@ -37,8 +40,17 @@ export class NewArticleComponent implements OnInit {
   }
 
   addTags(tag){
+    console.log("add tag called")
     this.tags.push(tag)
     console.log("tag:"+tag);
+  }
+  removeTag(tag){
+    console.log("remove called")
+    console.log(tag)
+    const index: number = this.tags.indexOf(tag);
+    if (index !== -1) {
+        this.tags.splice(index, 1);
+    }
   }
   submitArticle(){
     console.log("submit called")
@@ -49,7 +61,7 @@ export class NewArticleComponent implements OnInit {
           title: this.article.value.title,
           description: this.article.value.description,
           body: this.article.value.body,
-          tagList: ["reactjs", "angularjs", "dragons"]
+          tagList: this.tags
         }
       },this.slug).subscribe((data:any)=>{
         console.log(data);
@@ -65,7 +77,7 @@ export class NewArticleComponent implements OnInit {
         title: this.article.value.title,
         description: this.article.value.description,
         body: this.article.value.body,
-        tagList: ["reactjs", "angularjs", "dragons"]
+        tagList: this.tags
       }
     }).subscribe((data:any)=>{
       console.log(data);
