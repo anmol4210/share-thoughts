@@ -25,3 +25,14 @@
     color: #ffffff;
   }
   
+  .unfavorite-btn {
+    background: rgb(78, 200, 104);;
+    border: rgb(78, 200, 94) solid 1px;
+    color: none;
+    font-size: 1.1rem;
+  }
+  
+  .unfavorite-btn:hover {
+    background-color: rgb(78, 200, 104);
+    color: #ffffff;
+  }

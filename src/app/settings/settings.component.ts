@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl,FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ServicesService } from '../services.service';
-import {Router,ActivatedRoute} from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
@@ -9,7 +9,7 @@ import {Router,ActivatedRoute} from '@angular/router';
 })
 export class SettingsComponent implements OnInit {
 
-  userDetails:any;
+  userDetails: any;
 
   updateduser = new FormGroup({
     email: new FormControl(''),
@@ -19,37 +19,40 @@ export class SettingsComponent implements OnInit {
     url: new FormControl('')
   });
 
-  constructor(private getData:ServicesService, private route:Router) { }
+  constructor(private getData: ServicesService, private route: Router) { }
 
   ngOnInit() {
-    
 
-    this.getData.getCurrentUser().subscribe((data:any)=>{
-     console.log("current user");
-        console.log(data);
-      this.userDetails=data.user
+
+    this.getData.getCurrentUser().subscribe((data: any) => {
+      console.log("current user");
+      console.log(data);
+      this.userDetails = data.user
       this.updateduser.controls['username'].setValue(this.userDetails.username);
       this.updateduser.controls['email'].setValue(this.userDetails.email);
-     
+
     });
   }
 
-  updateUser(){
-    
-   this.getData.updateUser({
-      user:{
+  updateUser() {
+
+    this.getData.updateUser({
+      user: {
         email: this.updateduser.value.email,
         bio: this.updateduser.value.bio,
         image: this.updateduser.value.image,
         username: this.updateduser.value.username,
         password: this.updateduser.value.password
       }
-    }).subscribe(data=> {
+    }).subscribe(data => {
+
       console.log(data)
+      this.getData.updateSubject();
+      this.route.navigate(['']);
     });
   }
 
-  logout(){
+  logout() {
     window.localStorage.removeItem("token");
     this.getData.updateSubject();
     this.route.navigate(['']);

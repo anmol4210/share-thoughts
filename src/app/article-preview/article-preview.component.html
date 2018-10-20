@@ -12,11 +12,18 @@
       </div>
   </a>
 </div>
-<button (click)=favouriteArticle(article.slug) class="favorite-btn rounded">
+<button *ngIf="!articlefavorite" (click)=favouriteArticle(article.slug) class="favorite-btn rounded">
     <i class="material-icons mr-1">
         favorite
     </i>
-    <span class="">{{article.favoritesCount}}</span>
+    <span class="">{{count}}</span>
+  </button>
+
+  <button *ngIf="articlefavorite" (click)=unfavouriteArticle(article.slug) class="unfavorite-btn rounded">
+    <i class="material-icons mr-1">
+        favorite_border
+    </i>
+    <span class="">{{count}}</span>
   </button>
 
 </div>

@@ -40,11 +40,11 @@
                 </button>
 
                 <button *ngIf="followuser" (click)=unfollowUser(article.author.username) class="favorite-btn rounded">
-                        <i class="material-icons mr-1">
-                            add
-                        </i>
-                        <span class="">UnFollow {{article.author.username}}</span>
-                    </button>
+                    <i class="material-icons mr-1">
+                        add
+                    </i>
+                    <span class="">UnFollow {{article.author.username}}</span>
+                </button>
 
                 <button *ngIf="!articlefavorite" (click)=favorite(article.slug) class="favorite-btn rounded">
                     <i class="material-icons mr-1">
@@ -53,11 +53,11 @@
                     <span class="">FavoriteArticle({{article.favoritesCount}})</span>
                 </button>
                 <button *ngIf="articlefavorite" (click)=unfavorite(article.slug) class="favorite-btn rounded">
-                        <i class="material-icons mr-1">
-                            favorite
-                        </i>
-                        <span class="">UnFavoriteArticle({{article.favoritesCount}})</span>
-                    </button>
+                    <i class="material-icons mr-1">
+                        favorite
+                    </i>
+                    <span class="">UnFavoriteArticle({{article.favoritesCount}})</span>
+                </button>
             </div>
 
         </div>
@@ -110,25 +110,25 @@
                 <span class="">Follow {{article.author.username}}</span>
             </button>
             <button *ngIf="followuser" (click)=unfollowUser(article.author.username) class="favorite-btn rounded">
-                    <i class="material-icons mr-1">
-                        add
-                    </i>
-                    <span class="">UnFollow {{article.author.username}}</span>
-                </button>
+                <i class="material-icons mr-1">
+                    add
+                </i>
+                <span class="">UnFollow {{article.author.username}}</span>
+            </button>
 
-            <button  *ngIf="!articlefavorite" (click)=favorite(article.slug) class="favorite-btn rounded">
+            <button *ngIf="!articlefavorite" (click)=favorite(article.slug) class="favorite-btn rounded">
                 <i class="material-icons mr-1">
                     favorite
                 </i>
                 <span class=""> FavoriteArticle({{article.favoritesCount}})</span>
             </button>
 
-            <button  *ngIf="articlefavorite" (click)=unfavorite(article.slug) class="favorite-btn rounded">
-                    <i class="material-icons mr-1">
-                        favorite
-                    </i>
-                    <span class="">UnFavorite Article({{article.favoritesCount}})</span>
-                </button>
+            <button *ngIf="articlefavorite" (click)=unfavorite(article.slug) class="favorite-btn rounded">
+                <i class="material-icons mr-1">
+                    favorite
+                </i>
+                <span class="">UnFavorite Article({{article.favoritesCount}})</span>
+            </button>
         </div>
     </div>
 
