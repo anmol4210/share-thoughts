@@ -101,6 +101,11 @@ this.headers=new HttpHeaders({
     
   }
 
+  getCurrentPageArticles(pagenumber){
+    //?offset=pagenumber
+    return this.http.get(`${this.url}articles/?offset=${pagenumber}`);
+  }
+
 
   submitArticle(article){
    
@@ -113,6 +118,7 @@ this.headers=new HttpHeaders({
 
   }
   deleteArticle(slug){
+  
     return this.http.delete(`${this.url}article/${slug}`,this.options);
   }
 
@@ -125,13 +131,14 @@ getComments(slug){
 }
 deletecomment(slug,id){
   ///api/articles/:slug/comments/:id
-
-  return this.http.delete(`${this.url}article/${slug}/comments/${id}`,this.options);
+console.log("delete called")
+  return this.http.delete(`${this.url}articles/${slug}/comments/${id}`,this.options);
   
 }
   getTags(){
     return this.http.get(`${this.url}tags`);
   }
+  
   getUserArticles(username){
     return this.http.get(`${this.url}articles?author=${username}`);
   }

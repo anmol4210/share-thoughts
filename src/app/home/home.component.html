@@ -8,11 +8,11 @@
    
    <div class="feed-toggle">
      <ul class="nav nav-pills outline-active">
-      <li class="nav-item" style="display:inherit;" *ngIf="loggedin"  (click)=yourfeed() >
-      <a class="nav-link active">  Your Feed</a>
+      <li class="nav-item" style="display:inherit;cursor: pointer;" *ngIf="loggedin"  (click)=yourfeed() >
+      <a class="nav-link" [ngClass]="{'active': !tabStyleActive}" >  Your Feed</a>
       </li>
-      <li class="nav-item"  (click)=globalfeed() >
-        <a class="nav-link ">Global Feed
+      <li class="nav-item"  style="cursor: pointer;" (click)=globalfeed() >
+        <a class="nav-link"  [ngClass]="{'active': tabStyleActive}">Global Feed
           </a>
         </li>
       </ul>
@@ -25,10 +25,10 @@
    <app-article-preview [task]="article"></app-article-preview>
    </div>
    
-  <nav>
+  <nav *ngIf="showpagenumbers">
       <ul class="pagination" *ngFor="let i of range; let j = index">
-        <li class="page-item" >
-          <a class="page-link">{{j}}</a>
+        <li (click)=nextPage(j) class="page-item" >
+          <a class="page-link">{{j+1}}</a>
         </li>
       
       </ul>

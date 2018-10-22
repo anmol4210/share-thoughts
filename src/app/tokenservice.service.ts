@@ -17,4 +17,12 @@ url:string;
     return window.localStorage.getItem('token');
    }
 
+   saveusername(username){
+     console.log("username:"+username)
+     window.localStorage.setItem('username',username);
+   }
+   getusername(){
+     return window.localStorage.getItem('username');
+   }
+
 }

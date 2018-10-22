@@ -19,6 +19,8 @@ export class ArticleComponent implements OnInit {
   loginUserName: string;
   followuser: boolean;
   loggedIn:boolean;
+  id:number;
+  
   userInputs = new FormGroup({
     comment: new FormControl("")
   });
@@ -31,7 +33,7 @@ export class ArticleComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.id=-1;
     //console.log("ng on init called");
     this.getData.getArticle(this.slug).subscribe((data: any) => {
       this.article = data.article;
@@ -152,6 +154,9 @@ export class ArticleComponent implements OnInit {
     if (this.tokenService.getToken()) {
 
       this.getData.deleteArticle(slug).subscribe((data: any) => {
+
+        console.log("comment deleted");
+        console.log(data);
         this.routes.navigate(['']);
       });
     }
@@ -164,6 +169,17 @@ export class ArticleComponent implements OnInit {
 
   catchid(e){
     console.log("emitted id:"+e)
+    this.getData.deletecomment(this.article.slug,e).subscribe((data:any)=>{
+      console.log("delete data")
+      console.log(data)
+      this.id=e;
+      this.routes.navigate([`article/${this.slug}`]);
+
+    },
+    err=>{
+      console.log(err);
+    })      
+    
   }
 
   onSubmit() {
@@ -174,7 +190,10 @@ export class ArticleComponent implements OnInit {
         }
       })
       .subscribe((data: any) => {
+        console.log("comment")
         console.log(data);
+        this.comments.push(data.comment)
+        this.routes.navigate([`article/${this.slug}`]);
       });
 
     console.log("form submit clicked:" + this.userInputs.value.comment);

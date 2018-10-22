@@ -13,6 +13,8 @@ export class HomeComponent implements OnInit {
   loggedin:boolean;
   range = Array(50).fill(4)
   condition:boolean;
+  showpagenumbers:boolean;
+  tabStyleActive:boolean;
   constructor(private getData:ServicesService, private token:TokenserviceService){}
   ngOnInit(){
 this.condition=true;
@@ -41,6 +43,7 @@ this.condition=true;
 
   yourfeed(){
     console.log("your feed called")
+    this.tabStyleActive=false;
     this.getData.getfeedArticles().subscribe((data:any)=>{
       //console.log(data);
       this.articles=data.articles;
@@ -49,6 +52,8 @@ this.condition=true;
 
   globalfeed(){
     console.log("global feed called");
+    this.tabStyleActive=true;
+    this.showpagenumbers=true;
     this.getData.getArticles()
     .subscribe((data:any)=>{
       this.articles=data.articles;
@@ -61,5 +66,12 @@ this.condition=true;
     .subscribe((data:any)=>{
       this.articles=data.articles;
     });
+  }
+
+  nextPage(pageNumber){
+    console.log("pageNumber:"+pageNumber)
+    this.getData.getCurrentPageArticles((pageNumber-1)*20).subscribe((data:any)=>{
+      this.articles=data.articles;
+    })
   }
 }

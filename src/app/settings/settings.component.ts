@@ -54,6 +54,7 @@ export class SettingsComponent implements OnInit {
 
   logout() {
     window.localStorage.removeItem("token");
+    window.localStorage.removeItem("username");
     this.getData.updateSubject();
     this.route.navigate(['']);
   }

@@ -7,7 +7,7 @@
               <a href="article-writer/{{comment.author.username}}" class="username">{{comment.author.username}}</a>
             &nbsp;
               <span class="timestamp text-secondary">{{date}}</span>
-            <span style="float:right;cursor: pointer;" (click)=delete(comment.id)>
+            <span *ngIf="user" style="float:right;cursor: pointer;" (click)=delete(comment.id)>
             <i  class="material-icons mr-1">
                 delete
             </i>

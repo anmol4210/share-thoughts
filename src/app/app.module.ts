@@ -88,7 +88,9 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, {
+        onSameUrlNavigation: 'reload'
+      })
   ],
   providers: [],
   bootstrap: [AppComponent]

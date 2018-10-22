@@ -5,10 +5,12 @@
     font-size: 1.1rem;
     
   }
+
   .favorite-btn:hover {
     background-color: rgb(78, 200, 104);
     color: #ffffff;
   }
+
   .text-shadow{
     text-shadow: 0px 1px 3px rgba(0, 0, 0, 3);
     font-weight: 700!important;
@@ -31,12 +33,14 @@
     border-radius: 4px;
   }
 
+
   .page-link{
     margin-left:0px;
     border-bottom-left-radius: 0.25rem;
     border-top-left-radius: 0.25rem;
   }
 
+  
   .page-link:focus,.page-link:hover{
     color: #3d8b3d;
     background-color: #eceeef;
@@ -108,4 +112,20 @@
    padding-right: 0.6em;
    padding-left: 0.6em;
    border-radius: 10rem;
+ }
+
+ .tab{
+   background: none;
+   border: none;
+   outline: none;
+   color: #aaa;
+ }
+
+ .tab:hover{
+   color:#000;
+ }
+
+ .tab.active{
+   color: #5cb85c;
+   border-bottom: 1px solid #5cb85c;
  }

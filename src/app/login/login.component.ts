@@ -28,7 +28,9 @@ export class LoginComponent implements OnInit {
         password:this.login.value.password
       }
     }).subscribe((data:any)=>{
+      console.log(data);
     this.tokenData.saveToken(data.user.token);
+    this.tokenData.saveusername(data.user.username);
       this.getData.updateHeader();
      this.getData.updateSubject();
     //this.getData.updateSubjectName();
