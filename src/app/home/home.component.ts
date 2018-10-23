@@ -45,7 +45,7 @@ this.notag=true;
   }
 
   yourfeed(){
-    console.log("your feed called")
+    //console.log("your feed called")
     this.tabStyleActive=false;
     this.getData.getfeedArticles().subscribe((data:any)=>{
       //console.log(data);
@@ -55,7 +55,7 @@ this.notag=true;
   }
 
   globalfeed(){
-    console.log("global feed called");
+    //console.log("global feed called");
     this.tabStyleActive=true;
     this.showpagenumbers=true;
     this.getData.getArticles()
@@ -66,7 +66,7 @@ this.notag=true;
     
   }
   filtertag(tag){
-    console.log("tag:"+tag);
+    //console.log("tag:"+tag);
     this.tagname="#"+tag;
     this.notag=false;
     this.getData.gettagArticles(tag)
@@ -76,7 +76,7 @@ this.notag=true;
   }
 
   nextPage(pageNumber){
-    console.log("pageNumber:"+pageNumber)
+    //console.log("pageNumber:"+pageNumber)
     this.getData.getCurrentPageArticles((pageNumber-1)*20).subscribe((data:any)=>{
       this.articles=data.articles;
     })

@@ -25,8 +25,8 @@ export class SettingsComponent implements OnInit {
 
 
     this.getData.getCurrentUser().subscribe((data: any) => {
-      console.log("current user");
-      console.log(data);
+     // console.log("current user");
+      //console.log(data);
       this.userDetails = data.user
       this.updateduser.controls['username'].setValue(this.userDetails.username);
       this.updateduser.controls['email'].setValue(this.userDetails.email);
@@ -46,7 +46,7 @@ export class SettingsComponent implements OnInit {
       }
     }).subscribe(data => {
 
-      console.log(data)
+     // console.log(data)
       this.getData.updateSubject();
       this.route.navigate(['']);
     },

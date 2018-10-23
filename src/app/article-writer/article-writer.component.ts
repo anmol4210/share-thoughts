@@ -15,6 +15,7 @@ export class ArticleWriterComponent implements OnInit {
   followuser: boolean;
   currentuser: boolean;
   tabStyleActive:boolean;
+  rendered:boolean;
   constructor(private routes: Router, private route: ActivatedRoute, private getData: ServicesService, private tokenService: TokenserviceService) {
     this.route.params.subscribe(params => {
       this.username = params.username;
@@ -42,10 +43,11 @@ this.myProfile();
       this.followuser = this.user.following;
 
       this.getData.getCurrentUser().subscribe((data: any) => {
-        if (data.user.username == this.username) {
+        if (data && data.user.username == this.username) {
           this.currentuser = true;
         }
       })
+    
     },
     err => {
      // console.log(err);
@@ -56,7 +58,8 @@ this.myProfile();
       this.articles = data.articles;
       this.tabStyleActive=false;
     //  console.log(data);
-    });
+    this.rendered=true;  
+  });
   }
   favouriteArticles() {
     this.getData.getuserFavouriteArticles(this.username).subscribe((data: any) => {
@@ -85,7 +88,7 @@ this.myProfile();
     if (this.tokenService.getToken()) {
 
       this.getData.unfollowUser(username).subscribe((data: any) => {
-        console.log(data);
+        //console.log(data);
         this.followuser = false;
       });
     }
@@ -95,7 +98,7 @@ this.myProfile();
   }
 
   editProfile() {
-    console.log("edit profile clicked");
+   // console.log("edit profile clicked");
     this.routes.navigate(['/settings'])
   }
 }

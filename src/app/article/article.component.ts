@@ -20,7 +20,7 @@ export class ArticleComponent implements OnInit {
   followuser: boolean;
   loggedIn:boolean;
   id:number;
-  
+  rendered:boolean;
   userInputs = new FormGroup({
     comment: new FormControl("")
   });
@@ -29,7 +29,7 @@ export class ArticleComponent implements OnInit {
 
     this.route.params.subscribe(params => {
       this.slug = params.slug;
-      
+
     });
   }
 
@@ -65,6 +65,7 @@ export class ArticleComponent implements OnInit {
        this.loggedIn=false;
         // console.log(err);
       });
+      this.rendered=true;
     });
 
     this.getData.getsubject().subscribe(data => {
@@ -83,10 +84,10 @@ export class ArticleComponent implements OnInit {
     });
   }
   followUser(username) {
-    console.log("follow clicked");
+   // console.log("follow clicked");
     if (this.tokenService.getToken()) {
       this.getData.followUser(username).subscribe((data: any) => {
-        console.log(data);
+     //   console.log(data);
         this.followuser = true;
       });
     }
@@ -97,11 +98,11 @@ export class ArticleComponent implements OnInit {
 
   unfollowUser(username) {
 
-    console.log("unfollow clicked");
+   // console.log("unfollow clicked");
     if (this.tokenService.getToken()) {
 
       this.getData.unfollowUser(username).subscribe((data: any) => {
-        console.log(data);
+      //  console.log(data);
         this.followuser = false;
       });
     }
@@ -113,7 +114,7 @@ export class ArticleComponent implements OnInit {
     if (this.tokenService.getToken()) {
 
       this.getData.favouriteArticle(slug).subscribe((data: any) => {
-        console.log(data);
+      //  console.log(data);
         this.articlefavorite = true;
         this.article.favoritesCount += 1;
       })
@@ -128,7 +129,7 @@ export class ArticleComponent implements OnInit {
     if (this.tokenService.getToken()) {
 
       this.getData.unfavouriteArticle(slug).subscribe((data: any) => {
-        console.log(data);
+        //console.log(data);
         this.articlefavorite = false;
         this.article.favoritesCount -= 1;
       })
@@ -156,8 +157,8 @@ export class ArticleComponent implements OnInit {
 
       this.getData.deleteArticle(slug).subscribe((data: any) => {
 
-        console.log("comment deleted");
-        console.log(data);
+       // console.log("comment deleted");
+        //console.log(data);
         this.routes.navigate(['']);
       });
     }
@@ -180,13 +181,13 @@ export class ArticleComponent implements OnInit {
       
       const index: number = this.comments.indexOf($e.event);
       if (index !== -1) {
-        console.log("index:"+index)
+       // console.log("index:"+index)
           this.comments.splice(index, 1);
       }
 
     },
     err=>{
-      console.log(err);
+     // console.log(err);
     })      
     
   }
@@ -199,12 +200,12 @@ export class ArticleComponent implements OnInit {
         }
       })
       .subscribe((data: any) => {
-        console.log("comment")
-        console.log(data);
+       // console.log("comment")
+        //console.log(data);
         this.comments.push(data.comment)
         this.routes.navigate([`article/${this.slug}`]);
       });
 
-    console.log("form submit clicked:" + this.userInputs.value.comment);
+    //console.log("form submit clicked:" + this.userInputs.value.comment);
   }
 }

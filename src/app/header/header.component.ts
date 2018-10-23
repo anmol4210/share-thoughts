@@ -19,15 +19,7 @@ user:any;
 
   ngOnInit() {
 
-    // this.getData.getCurrentUser().subscribe((data:any)=>{
-    //   console.log("header onInit")
-    //   console.log(data)
-    //  // console.log(data.user);
-    //  if(data){ 
-    //  this.display=false;
-    //   this.user=data.user.username
-    // }
-    // });
+    
 
     this.getData.getsubject().subscribe((data:any) => {
     if(data){

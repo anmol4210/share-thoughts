@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="rendered">
    <div class="banner pt-5 pb-4">
         <div class="d-flex justify-content-center">
             <img src="{{user.image}}" alt="" class="rounded-circle" height=100 width=100>
@@ -38,4 +38,4 @@
       <app-article-preview [task]="article"></app-article-preview>
       </div>
   </div>
-</div>>
+</div>

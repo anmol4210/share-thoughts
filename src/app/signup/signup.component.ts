@@ -40,7 +40,7 @@ export class SignupComponent implements OnInit {
           this.route.navigate(["/"]);
         },
         err => {
-          console.log(err);
+         // console.log(err);
         }
       );
   }

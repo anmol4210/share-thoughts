@@ -25,7 +25,7 @@ export class CommentComponent implements OnInit {
 }
 delete(id){
   //console.log(this.comment)
-  console.log("delete clicked:"+id)
+ // console.log("delete clicked:"+id)
   this.coment.emit({event:this.comment});
 }
 

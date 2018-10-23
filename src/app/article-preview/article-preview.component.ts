@@ -25,7 +25,7 @@ constructor(private getData:ServicesService, private tokenService:TokenserviceSe
   favouriteArticle(slug) {
     if(this.tokenService.getToken()){
     this.getData.favouriteArticle(slug).subscribe((data:any)=>{
-      console.log(data);
+     // console.log(data);
       this.articlefavorite=true;
       this.count += 1;
     });
@@ -41,7 +41,7 @@ constructor(private getData:ServicesService, private tokenService:TokenserviceSe
   unfavouriteArticle(slug) {
     if(this.tokenService.getToken()){
     this.getData.unfavouriteArticle(slug).subscribe((data:any)=>{
-      console.log(data);
+     // console.log(data);
       this.articlefavorite=false;
       this.count -= 1;
     })
@@ -55,7 +55,7 @@ constructor(private getData:ServicesService, private tokenService:TokenserviceSe
 }
 
 catchid(e){
-  console.log("emitted id:"+e)
+  //console.log("emitted id:"+e)
 }
   
 }

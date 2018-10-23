@@ -21,11 +21,11 @@ export class NewArticleComponent implements OnInit {
 
   ngOnInit() {
     this.routes.params.subscribe(params =>{
-      console.log("slug:"+params.slug)
+      //console.log("slug:"+params.slug)
       this.slug=params.slug;
       if(this.slug){
       this.getData.getArticle(params.slug).subscribe((data:any)=>{
-        console.log(data)
+        //console.log(data)
         this.article.controls['title'].setValue(data.article.title);
         this.article.controls['description'].setValue(data.article.description);
         this.article.controls['body'].setValue(data.article.body);
@@ -40,20 +40,20 @@ export class NewArticleComponent implements OnInit {
   }
 
   addTags(tag){
-    console.log("add tag called")
+   // console.log("add tag called")
     this.tags.push(tag)
-    console.log("tag:"+tag);
+    //console.log("tag:"+tag);
   }
   removeTag(tag){
-    console.log("remove called")
-    console.log(tag)
+    //console.log("remove called")
+    //console.log(tag)
     const index: number = this.tags.indexOf(tag);
     if (index !== -1) {
         this.tags.splice(index, 1);
     }
   }
   submitArticle(){
-    console.log("submit called")
+    //console.log("submit called")
     if(this.slug){
 
       this.getData.updateArticle({
@@ -64,10 +64,10 @@ export class NewArticleComponent implements OnInit {
           tagList: this.tags
         }
       },this.slug).subscribe((data:any)=>{
-        console.log(data);
+      //  console.log(data);
       },
       err=>{
-        console.log(err);
+        //console.log(err);
       });
 
     }
@@ -80,10 +80,10 @@ export class NewArticleComponent implements OnInit {
         tagList: this.tags
       }
     }).subscribe((data:any)=>{
-      console.log(data);
+     // console.log(data);
     },
     err=>{
-      console.log(err);
+      //console.log(err);
     });
   }
   this.route.navigate(['']);
