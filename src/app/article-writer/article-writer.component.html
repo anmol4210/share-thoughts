@@ -30,8 +30,8 @@
         </div>
       </div>
    <div>
-     <button class="tab" (click)=myArticles()>My Articles</button>
-     <button class="tab" (click)=favouriteArticles()>Favourite Articles</button>
+     <button class="tab" [ngClass]="{'active': !tabStyleActive}" (click)=myArticles()>My Articles</button>
+     <button class="tab" [ngClass]="{'active': tabStyleActive}" (click)=favouriteArticles()>Favourite Articles</button>
    </div>
   <div>
     <div *ngFor="let article of articles">

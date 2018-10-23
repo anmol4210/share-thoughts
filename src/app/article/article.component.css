@@ -232,5 +232,10 @@ img{
   float: right;
 }
 
+.tab.active{
+  color: #5cb85c;
+  border-bottom: 1px solid #5cb85c;
+}
+
 
 

@@ -15,9 +15,12 @@ export class HomeComponent implements OnInit {
   condition:boolean;
   showpagenumbers:boolean;
   tabStyleActive:boolean;
+ notag:boolean;
+ tagname:string;
   constructor(private getData:ServicesService, private token:TokenserviceService){}
   ngOnInit(){
 this.condition=true;
+this.notag=true;
     // this.getData.getCurrentUser
     // this.getData.getArticles()
     // .subscribe((data:any)=>{
@@ -46,6 +49,7 @@ this.condition=true;
     this.tabStyleActive=false;
     this.getData.getfeedArticles().subscribe((data:any)=>{
       //console.log(data);
+      this.notag=true;
       this.articles=data.articles;
     })
   }
@@ -57,11 +61,14 @@ this.condition=true;
     this.getData.getArticles()
     .subscribe((data:any)=>{
       this.articles=data.articles;
+      this.notag=true;
     });
     
   }
   filtertag(tag){
     console.log("tag:"+tag);
+    this.tagname="#"+tag;
+    this.notag=false;
     this.getData.gettagArticles(tag)
     .subscribe((data:any)=>{
       this.articles=data.articles;

@@ -14,10 +14,11 @@ export class ArticleWriterComponent implements OnInit {
   articles: any;
   followuser: boolean;
   currentuser: boolean;
+  tabStyleActive:boolean;
   constructor(private routes: Router, private route: ActivatedRoute, private getData: ServicesService, private tokenService: TokenserviceService) {
     this.route.params.subscribe(params => {
       this.username = params.username;
-      console.log("username:"+this.username);
+     // console.log("username:"+this.username);
          
 this.myProfile();
 this.myArticles();
@@ -37,7 +38,7 @@ this.myProfile();
   myProfile(){
     this.getData.getProfile(this.username).subscribe((data: any) => {
       this.user = data.profile;
-      console.log(data.profile);
+    //  console.log(data.profile);
       this.followuser = this.user.following;
 
       this.getData.getCurrentUser().subscribe((data: any) => {
@@ -47,27 +48,29 @@ this.myProfile();
       })
     },
     err => {
-      console.log(err);
+     // console.log(err);
     });
   }
   myArticles() {
     this.getData.getUserArticles(this.username).subscribe((data: any) => {
       this.articles = data.articles;
-      console.log(data);
+      this.tabStyleActive=false;
+    //  console.log(data);
     });
   }
   favouriteArticles() {
     this.getData.getuserFavouriteArticles(this.username).subscribe((data: any) => {
       this.articles = data.articles;
-      console.log(data);
+      this.tabStyleActive=true;
+   //   console.log(data);
     })
   }
 
   follow(username) {
-    console.log("follow clicked");
+   // console.log("follow clicked");
     if (this.tokenService.getToken()) {
       this.getData.followUser(username).subscribe((data: any) => {
-        console.log(data);
+     //   console.log(data);
         this.followuser = true;
       });
     }
@@ -78,7 +81,7 @@ this.myProfile();
 
   unfollow(username) {
 
-    console.log("unfollow clicked");
+   // console.log("unfollow clicked");
     if (this.tokenService.getToken()) {
 
       this.getData.unfollowUser(username).subscribe((data: any) => {

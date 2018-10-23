@@ -9,12 +9,16 @@
    <div class="feed-toggle">
      <ul class="nav nav-pills outline-active">
       <li class="nav-item" style="display:inherit;cursor: pointer;" *ngIf="loggedin"  (click)=yourfeed() >
-      <a class="nav-link" [ngClass]="{'active': !tabStyleActive}" >  Your Feed</a>
+      <a class="nav-link" [ngClass]="{'active': tabStyleActive==false && notag==true}" >  Your Feed</a>
       </li>
       <li class="nav-item"  style="cursor: pointer;" (click)=globalfeed() >
-        <a class="nav-link"  [ngClass]="{'active': tabStyleActive}">Global Feed
+        <a class="nav-link"  [ngClass]="{'active': (tabStyleActive==true && notag==true)}">Global Feed
           </a>
         </li>
+        <li *ngIf="!notag" class="nav-item">
+          <a class="nav-link"  [ngClass]="{'active': !notag}">{{tagname}}
+            </a>
+          </li>
         
       </ul>
    </div>
