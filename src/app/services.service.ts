@@ -82,12 +82,20 @@ this.headers=new HttpHeaders({
     return this.http.get(`${this.url}articles/feed`,this.options);
   }
   getArticles(){
-    return this.http.get(`${this.url}articles`);
+    if(window.localStorage.getItem('token')){
+    
+    return this.http.get(`${this.url}articles`,this.options);
   }
+  else{
+    return this.http.get(`${this.url}articles`);
+    
+  }
+
+}
 
   getArticle(slug){
     if(window.localStorage.getItem('token')){
-      console.log("with header called");
+     // console.log("with header called");
     return this.http.get(`${this.url}articles/${slug}`,this.options);
   }
     else{

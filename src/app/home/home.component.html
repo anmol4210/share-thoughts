@@ -15,6 +15,7 @@
         <a class="nav-link"  [ngClass]="{'active': tabStyleActive}">Global Feed
           </a>
         </li>
+        
       </ul>
    </div>
    
@@ -27,7 +28,7 @@
    
   <nav *ngIf="showpagenumbers">
       <ul class="pagination" *ngFor="let i of range; let j = index">
-        <li (click)=nextPage(j) class="page-item" >
+        <li (click)=nextPage(j) style="cursor: pointer;" class="page-item" >
           <a class="page-link">{{j+1}}</a>
         </li>
       
@@ -37,7 +38,7 @@
 <div class=" col-md-3">
   <div class="sidebar">
     <p>Popular Tags</p>
-   <div (click) =filtertag(tag)  class="badge badge-secondary mx-1 my-1" *ngFor="let tag of tags">
+   <div (click) =filtertag(tag) style="cursor: pointer;" class="badge badge-secondary mx-1 my-1" *ngFor="let tag of tags">
        
             {{tag}}
          

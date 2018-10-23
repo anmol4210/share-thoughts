@@ -17,12 +17,24 @@ export class ArticleWriterComponent implements OnInit {
   constructor(private routes: Router, private route: ActivatedRoute, private getData: ServicesService, private tokenService: TokenserviceService) {
     this.route.params.subscribe(params => {
       this.username = params.username;
-      //console.log(this.username);
+      console.log("username:"+this.username);
+         
+this.myProfile();
+this.myArticles();
     });
   }
 
   ngOnInit() {
     this.isActive = true;
+    
+this.myProfile();
+    this.myArticles();
+
+
+
+  }
+
+  myProfile(){
     this.getData.getProfile(this.username).subscribe((data: any) => {
       this.user = data.profile;
       console.log(data.profile);
@@ -33,15 +45,10 @@ export class ArticleWriterComponent implements OnInit {
           this.currentuser = true;
         }
       })
-    }),
-      err => {
-        console.log(err);
-      };
-
-    this.myArticles();
-
-
-
+    },
+    err => {
+      console.log(err);
+    });
   }
   myArticles() {
     this.getData.getUserArticles(this.username).subscribe((data: any) => {

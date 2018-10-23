@@ -29,6 +29,7 @@ export class ArticleComponent implements OnInit {
 
     this.route.params.subscribe(params => {
       this.slug = params.slug;
+      
     });
   }
 
