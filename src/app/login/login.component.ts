@@ -9,7 +9,7 @@ import {Router,ActivatedRoute} from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
- 
+  errorarr=[];
   login = new FormGroup({
     email: new FormControl(''),
     password: new FormControl('')
@@ -37,9 +37,18 @@ export class LoginComponent implements OnInit {
     this.route.navigate(['']);
     
   },
-    err=>{
-      console.log(err);
-    });
+  err =>{
+    const errors = err.error.errors;
+    for(var key in errors){
+      const msgs = errors[key];
+      // cons
+      if(errors.hasOwnProperty(key)){
+        for(let i=0;i<msgs.length;i++){
+          this.errorarr.push(`${key}  ${msgs[i]}`);
+        }
+      }
+    }
+  });
     
       
 

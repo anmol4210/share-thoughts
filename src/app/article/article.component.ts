@@ -167,13 +167,21 @@ export class ArticleComponent implements OnInit {
   }
 
 
-  catchid(e){
-    console.log("emitted id:"+e)
-    this.getData.deletecomment(this.article.slug,e).subscribe((data:any)=>{
-      console.log("delete data")
-      console.log(data)
-      this.id=e;
+  catchid($e:any){
+    //console.log($e.event)
+    //console.log("emitted id:")
+    
+    this.getData.deletecomment(this.article.slug,$e.event.id).subscribe((data:any)=>{
+      //console.log("delete data")
+      //console.log(data)
+      this.id=$e.event.id;
       this.routes.navigate([`article/${this.slug}`]);
+      
+      const index: number = this.comments.indexOf($e.event);
+      if (index !== -1) {
+        console.log("index:"+index)
+          this.comments.splice(index, 1);
+      }
 
     },
     err=>{

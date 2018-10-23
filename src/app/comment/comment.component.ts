@@ -8,7 +8,7 @@ import { TokenserviceService } from '../tokenservice.service';
 export class CommentComponent implements OnInit {
   @Input('review') comment:any;
   @Input('currentUser') currentUser:any;
-  @Output() commentid=new EventEmitter();
+  @Output() coment=new EventEmitter();
   date:any;
   user:boolean;
   constructor(private tokenData:TokenserviceService) { }
@@ -24,8 +24,9 @@ export class CommentComponent implements OnInit {
   this.date=new Date(this.comment.createdAt).toDateString();  
 }
 delete(id){
+  //console.log(this.comment)
   console.log("delete clicked:"+id)
-  this.commentid.emit(`${id}`);
+  this.coment.emit({event:this.comment});
 }
 
 

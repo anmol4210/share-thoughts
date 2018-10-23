@@ -4,17 +4,24 @@
       <div class="col-sm-3">
   
       </div>
-      <form class="form-group col-sm-6" (ngSubmit)="updateUser()" [formGroup]="updateduser">
+      <div class="col-sm-6">
+          <ul  style="list-style: none;">
+              <li style="color: red; " *ngFor="let error of errorarr">
+                {{ error }}
+              </li>
+            </ul>
+  
+      <form class="form-group" (ngSubmit)="updateUser()" [formGroup]="updateduser">
           <input type="text" formControlName="url" value=""   class="form-control my-3 p-4" placeholder="URL of profile picture"  autocomplete="off">
-          <input type="text" formControlName="username"  class="form-control my-3 p-4" placeholder="Username" autocomplete="off">
+          <input type="text" required minlength="2" formControlName="username"  class="form-control my-3 p-4" placeholder="Username" autocomplete="off">
           <textarea type="text" formControlName="bio"  class="form-control my-3 p-4" placeholder="Short bio about you" ></textarea>
-          <input type="text" formControlName="email"   class="form-control my-3 p-4" placeholder="Email" >
+          <input type="text" required minlength="4" formControlName="email"   class="form-control my-3 p-4" placeholder="Email" >
           <input type="password" formControlName="password"  class="form-control my-3 p-4" placeholder="New Password" >
         <div class="d-flex justify-content-end">
-            <input type="submit" value="Update Settings" class="btn btn-dark">
+            <input type="submit" [disabled]="!updateduser.valid" value="Update Settings" class="btn btn-dark">
           </div>
         </form>
-      
+      </div>
         <div class="col-sm-3"></div>
         
       </div>

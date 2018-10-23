@@ -1,0 +1,17 @@
+.footer {
+    background-color: #f3f3f3;
+  }
+  
+  .footer-title {
+    color: rgb(75, 226, 83);
+    font-size: 1.5rem;
+  }
+  
+  .footer-text {
+    font-size: 0.75rem;
+  }
+  
+  a:hover {
+    text-decoration-color: rgb(64, 245, 40);
+  }
+  

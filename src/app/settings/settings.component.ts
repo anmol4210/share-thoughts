@@ -10,7 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class SettingsComponent implements OnInit {
 
   userDetails: any;
-
+  errorarr=[];
   updateduser = new FormGroup({
     email: new FormControl(''),
     username: new FormControl(''),
@@ -49,7 +49,20 @@ export class SettingsComponent implements OnInit {
       console.log(data)
       this.getData.updateSubject();
       this.route.navigate(['']);
-    });
+    },
+    err =>{
+      const errors = err.error.errors;
+      for(var key in errors){
+        const msgs = errors[key];
+        // cons
+        if(errors.hasOwnProperty(key)){
+          for(let i=0;i<msgs.length;i++){
+            this.errorarr.push(`${key} : ${msgs[i]}`);
+          }
+        }
+      }
+    }
+);
   }
 
   logout() {

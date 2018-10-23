@@ -165,7 +165,7 @@
         </p>
     
     <div *ngFor="let comment of comments">
-        <app-comment *ngIf="!(id==comment.id)" [review]="comment" (commentid)='catchid($event)'></app-comment>
+        <app-comment  [review]="comment" (coment)='catchid($event)'></app-comment>
     </div>
 </div>
 </div>

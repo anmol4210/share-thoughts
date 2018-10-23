@@ -5,13 +5,20 @@
     <div class="col-sm-3">
 
     </div>
-    <form class="form-group col-sm-6" (ngSubmit)="authenticateUser()" [formGroup]="login">
-      <input type="text" formControlName="email"  class="form-control my-3 p-4" placeholder="Email" required autocomplete="off">
-      <input type="password" formControlName="password" class="form-control my-3 p-4" placeholder="Password" required>
+    <div class="col-sm-6">
+        <ul  style="list-style: none;">
+            <li style="color: red; " *ngFor="let error of errorarr">
+              {{ error }}
+            </li>
+          </ul>
+    <form class="form-group" (ngSubmit)="authenticateUser()" [formGroup]="login">
+      <input type="text" required minlength="2" formControlName="email"  class="form-control my-3 p-4" placeholder="Email" required autocomplete="off">
+      <input type="password" required minlength="8" formControlName="password" class="form-control my-3 p-4" placeholder="Password" required>
       <div class="d-flex justify-content-end">
-        <input type="submit" value="Sign in" class="btn btn-dark">
+        <input type="submit" [disabled]="!login.valid" value="Sign in" class="btn btn-dark">
       </div>
     </form>
+    </div>
     <div class="col-sm-3">
 
     </div>
